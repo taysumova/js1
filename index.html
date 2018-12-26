@@ -2,23 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lesson1_Homework</title>
+    <title>Lesson2_Homework</title>
 </head>
 <body>
    <script>
-    //Задание 1-2
-    var celsiusTemp = +prompt("Введите температуру в градусах Цельсия (°C)");
-    var fahrenheitTemp = (9 / 5) * celsiusTemp + 32;
-    fahrenheitTemp = fahrenheitTemp.toFixed(1);
-    alert("Задание 1 \nТемпература " + celsiusTemp + "°C - в градусах Фаренгейта (°F) равна " + fahrenheitTemp + "°F");
-    
-    //Задание 2-3
-    var name = "Василий";
-    var admin = name;
-    alert("Задание 3\n" + admin);
-       
-    //Задание 4
-    alert("Задание 4\nJS-выражение - 1000 + \"108\" будет равно = \"1000108\",\nтак как при конкатенации числа и строки \nконечный результат преобразуется в строку");
+ // Задание 1
+     document.write("<h3>Задание 1</h3><code><b>var a = 1, b = 1, c, d;<br>c = ++a; alert(c)</b>;<br>// тут будет выведен результат <strong>2</strong>, потому что использована префиксная форма инкремента, которая возвращает значение после увелечения переменной (<i>c = 1+1</i>)<br><br><b>d = b++; alert(d);</b><br>// здесь, наоборот, использована постфиксная форма, которая увеличивает переменную, но возвращает старое значение, т.е. <strong>1</strong>, а переменная b уже будет равна <strong>2</strong><br><br><b>c = (2+ ++a); alert(c);</b><br>// на данном этапе переменная a уже равна <strong>2</strong>, а также используется префиксный инкремент, поэтому, выводится только что полученное значение <strong>5</strong> (<i>c = 2 + (2+1)</i>)<br><br><b>d = (2+ b++); alert(d);</b><br>//здесь переменная b равна <strong>2</strong>, используется постфиксный инкремент, поэтому, для значения b используется это старое значение <strong>2</strong>, и в alert получится <strong>4</strong><br><br><b>alert(a);</b><br>// если мы выводим инкремент в другом выражении, то без разницы, какая форма была использована, все равно выведется увеличенный результат, всего переменная a увеличилась на два раза, поэтому результат <strong>3</strong><br><br><b>alert(b);</b><br>// если мы выводим инкремент в другом выражении, то без разницы, какая форма была использована, все равно выведется увеличенный результат, всего переменная b увеличилась на два раза, поэтому результат <strong>3</strong> </code>");
+
+    //Задание 2
+        document.write("<h3>Задание 2</h3>В примере ниже x будет равен <strong>5</strong>:<br><br><code>var a = 2;<br>var x = 1 + (a *= 2);</code><br><br>потому что выражение - (a *=2) - это сокращенная запись a = a * 2.");
+
     </script>
+
+    <script type="text/javascript" src="task3.js"></script>
+    <script type="text/javascript" src="task4.js"></script>
+    <script type="text/javascript" src="task5-6.js"></script>
+    <script type="text/javascript" src="task7.js"></script>
+    <script type="text/javascript" src="task8.js"></script>
 </body>
 </html>
