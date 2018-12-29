@@ -6,18 +6,57 @@
 </head>
 <body>
    <script>
- // Задание 1
-     document.write("<h3>Задание 1</h3><code><b>var a = 1, b = 1, c, d;<br>c = ++a; alert(c)</b>;<br>// тут будет выведен результат <strong>2</strong>, потому что использована префиксная форма инкремента, которая возвращает значение после увелечения переменной (<i>c = 1+1</i>)<br><br><b>d = b++; alert(d);</b><br>// здесь, наоборот, использована постфиксная форма, которая увеличивает переменную, но возвращает старое значение, т.е. <strong>1</strong>, а переменная b уже будет равна <strong>2</strong><br><br><b>c = (2+ ++a); alert(c);</b><br>// на данном этапе переменная a уже равна <strong>2</strong>, а также используется префиксный инкремент, поэтому, выводится только что полученное значение <strong>5</strong> (<i>c = 2 + (2+1)</i>)<br><br><b>d = (2+ b++); alert(d);</b><br>//здесь переменная b равна <strong>2</strong>, используется постфиксный инкремент, поэтому, для значения b используется это старое значение <strong>2</strong>, и в alert получится <strong>4</strong><br><br><b>alert(a);</b><br>// если мы выводим инкремент в другом выражении, то без разницы, какая форма была использована, все равно выведется увеличенный результат, всего переменная a увеличилась на два раза, поэтому результат <strong>3</strong><br><br><b>alert(b);</b><br>// если мы выводим инкремент в другом выражении, то без разницы, какая форма была использована, все равно выведется увеличенный результат, всего переменная b увеличилась на два раза, поэтому результат <strong>3</strong> </code>");
+    //  Задание 1
+    function simpleNumbers() {
+        document.write("<h3>Задание 1</h3>Простые цифры от 0 до 100:<br><br>");
+        for (var i = 2;  i <= 100; i++) {
+            var count = 0;
+            for (var j = 2; j < i; j++) {
+                if (i % j) {
+                    continue;
+                }
+                count += 1;
+            }
+            if (!count) document.write(i + "<br>");
+            }
+        }
 
-    //Задание 2
-        document.write("<h3>Задание 2</h3>В примере ниже x будет равен <strong>5</strong>:<br><br><code>var a = 2;<br>var x = 1 + (a *= 2);</code><br><br>потому что выражение - (a *=2) - это сокращенная запись a = a * 2.");
+    simpleNumbers();
 
-    </script>
 
-    <script type="text/javascript" src="task3.js"></script>
-    <script type="text/javascript" src="task4.js"></script>
-    <script type="text/javascript" src="task5-6.js"></script>
-    <script type="text/javascript" src="task7.js"></script>
-    <script type="text/javascript" src="task8.js"></script>
+    // Задание 2
+    function typeOfNumber() {
+        document.write("<h3>Задание 2</h3>");
+        var i = 0;
+        document.write(i + " - это ноль<br>");
+        do {
+            i++;
+            if (i % 2 == 0) {
+                document.write(i + " - четное число<br>");
+            } else {
+                document.write(i + " - нечетное число<br>");
+            }
+        } while(i < 10)
+       }
+    // Проверка задания 2
+    typeOfNumber();
+
+
+    // Задание 3
+    document.write("<h3>Задание 3</h3>")
+    var i;
+    for(i = 0; i < 10; document.write(i++ + "<br>")) {
+
+    };
+
+    // Задание 4
+    console.log("Задание 4");
+    var x = "x";
+    for(i = 0; i < 20; i++) {
+        console.log(x);
+        x+= "x";
+    }
+
+   </script> 
 </body>
 </html>
