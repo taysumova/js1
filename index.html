@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson5_Homework</title>
+    <link rel="stylesheet" type="text/css" href="style.css"> </head>
+
+<body>
+    <script>
+        function createBoard() {
+            // создаем доску
+            board = document.createElement("div");
+            board.id = "board";
+            board.style.background = "green";
+            board.style.width = '600px';
+            board.style.height = "600px"
+            document.body.appendChild(board);
+            // добавляем поля
+            function createField(bgColor, color, figure) {
+                var field = document.createElement("span");
+                field.class = "field";
+                field.innerHTML = figure;
+                field.style.background = bgColor;
+                field.style.width = "50px";
+                field.style.height = "50px";
+                field.style.display = "inline-block";
+                field.style.color = color;
+                field.style.textAlign = "center";
+                field.style.border = "3px solid gray";
+                board.appendChild(field);
+            }
+            
+            var figures = ["&#9812;", "&#9813;", "&#9814;"];
+            createField("white", "black", figures[0]);
+            createField("black", "white", figures[2]);
+            createField("blue", "orange", figures[1]);
+            
+        }
+        
+        createBoard();
+    </script>
+</body>
+
+</html>
