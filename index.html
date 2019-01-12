@@ -8,8 +8,8 @@
 
 <body>
     <script>
+        // для создания доски
         function createBoard() {
-            // создаем доску
             board = document.createElement("div");
             board.id = "board";
             board.style.background = "#BB8B54";
@@ -18,7 +18,7 @@
             document.body.appendChild(board);
 
 
-             //добавляем контейнер для боковых панелей
+             // для создания контейнера для боковых границ
             function createBordersContainer(width, height, borderPosition) {
                 var bordersContainer = document.createElement("div");
                 bordersContainer.id = "bordersContainer" + borderPosition;
@@ -27,16 +27,15 @@
                 board.appendChild(bordersContainer);
             }
 
-            // сразу создаем контейнер
+            // сразу создаем контейнер для границ
             createBordersContainer(35, 435, "Left");
             createBordersContainer(400, 35, "Top");
             createBordersContainer(35, 435, "Right");
 
 
-           //добавляем боковые панели
+           // функция для создания полей боковых границ
              function createBorder(borderPosition, content, width, height, rotation) {
                 var border = document.createElement("span");
-                border.class = "chess-board__border";
                 border.style.width = width + "px";
                 border.style.height = height + "px";
                 border.style.display = "inline-block";
@@ -50,23 +49,26 @@
                 bordersContainer.appendChild(border);
             }
 
+            // создаем массив с буквами для границы
             var lettersArr = ["A", "B", "C", "D", "E", "F", "J", "H"];
+
+            // создаем верхнюю границу с буквами
             for(var i = 0; i < 8; i++) {
                 createBorder("Top", lettersArr[i], 50, 35, "rotate(180deg)");
             }
 
-            //создание боковых границ - цифры
+            // создаем левую границу с цифрами
             for(var i = 8; i >= 1; i--) {
                 createBorder("Left", i, 35, 50);
             }
 
+            // создаем правую границу с цифрами
             for(var i = 8; i >= 1; i--) {
                 createBorder("Right", i, 35, 50, "rotate(180deg)");
             }
 
 
-            // создаем контейнер для полей
-
+            // функция для создания контейнера для полей
             function createFieldsContainer() {
                 var fieldsContainer = document.createElement("div");
                 fieldsContainer.id = "fieldsContainer";
@@ -76,10 +78,10 @@
                 board.appendChild(fieldsContainer);
             }
 
-            // сразу вызываем функцию
+            // сразу создаем контейнер для полей
             createFieldsContainer();
 
-            // добавляем поля в только что созданный контейнер
+            // функция для создания полей
             function createField(color) {
                 var field = document.createElement("div");
                 field.class = "field";
@@ -91,16 +93,13 @@
                 fieldsContainer.appendChild(field);
             }
 
-
             //добавляем нижнюю границу
             createBordersContainer(470, 35, "Bottom");
             for(var i = 0; i < 8; i++) {
                 createBorder("Bottom", lettersArr[i], 50, 35);
             }
-            
 
-
-            // добавляем фигуры
+            // функция для создания фигур
             function createFigure(figureCode, topPosition, leftPosition) {
                 var figure = document.createElement("span");
                 figure.class = "figure";
@@ -118,8 +117,7 @@
                 fieldsContainer.appendChild(figure);
             }
 
-            
-
+            // создание шахматной разметки
             for(var i = 0; i < 4; i++) {
                 for(var j = 0; j < 8; j++) {
                     if(j % 2) {
@@ -138,84 +136,59 @@
                 }
             }
             
-            var figures = ["&#9812;", "&#9813;", "&#9814;", "&#9815;", "&#9816;", "&#9817;", "&#9818;", "&#9819;", "&#9820;", "&#9821;", "&#9822;", "&#9823;"];
+            // создаем массив с фигурами
+            var figures = [["&#9812;","&#9813;", "&#9814;", "&#9815;", "&#9816;", "&#9817;"], ["&#9818;", "&#9819;", "&#9820;", "&#9821;", "&#9822;", "&#9823;"]];
 
-            //Добавляем черные пешки
-            top = 50;
-            left = -50;
+            // создаем переменные для циклов
+            var top = 50;
+            var left = -50;
+
+            // добавляем черные пешки
             for(var i = 1; i <= 8 ; i++) {
-                createFigure(figures[11], top+=0, left+=50);
+                createFigure(figures[1][5], top+=0, left+=50);
             }
 
-            //Добавляем белые пешки
+            // добавляем белые пешки
             top = 300;
             left = -50;
             for(var i = 1; i <= 8 ; i++) {
-                createFigure(figures[5], top+=0, left+=50);
+                createFigure(figures[0][5], top+=0, left+=50);
             }
 
             // расставляем черные ладьи
-            top = 0;
-            left = -350;
-            for(var i = 0; i < 2; i++) {
-                createFigure(figures[8], top+=0, left+=350);
-            }
+            createFigure(figures[1][2], 0, 0);
+            createFigure(figures[1][2], 0, 350);
 
             // расставляем белые ладьи
-            top = 350;
-            left = -350;
-            for(var i = 0; i < 2; i++) {
-                createFigure(figures[2], top+=0, left+=350);
-            }
+            createFigure(figures[0][2], 350, 0);
+            createFigure(figures[0][2], 350, 350);
 
+            // расставляем черных коней
+            createFigure(figures[1][4], 0, 50);
+            createFigure(figures[1][4], 0, 300);
 
-            //черный конь
-            top = 0;
-            left = -200;
-            for(var i = 0; i < 2; i++) {
-                createFigure(figures[10], top+=0, left+=250);
-            }
+            // расставляем белых коней
+            createFigure(figures[0][4], 350, 50);
+            createFigure(figures[0][4], 350, 300);
 
+            // расставляем черных слонов
+            createFigure(figures[1][3], 0, 100);
+            createFigure(figures[1][3], 0, 250);
 
-            //белый конь
-            top = 350;
-            left = -200;
-            for(var i = 0; i < 2; i++) {
-                createFigure(figures[4], top+=0, left+=250);
-            }
+            // расставляем белых слонов
+            createFigure(figures[0][3], 350, 100);
+            createFigure(figures[0][3], 350, 250);
 
+            // расставляем черных предводителей
+            createFigure(figures[1][1], 0, 150);
+            createFigure(figures[1][0], 0, 200);
 
-            //черный слон
-            top = 0;
-            left = -50;
-            for(var i = 0; i < 2; i++) {
-                createFigure(figures[9], top+=0, left+=150);
-            }
-
-
-            //белый слон
-            top = 350;
-            left = -50;
-            for(var i = 0; i < 2; i++) {
-                createFigure(figures[3], top+=0, left+=150);
-            }
-
-
-            // черные предводители
-            var top = 0;
-            var left = 100;
-            for(var i = 7; i >= 6; i--) {
-                createFigure(figures[i], top+=0, left+=50);
-            }
-
-            //белые предводители
-            top = 350;
-            left = 100;
-            for(var i = 1; i >= 0; i--) {
-                createFigure(figures[i], top+=0, left+=50);
-            }
+            //расставляем белых предводителей
+            createFigure(figures[0][1], 350, 150);
+            createFigure(figures[0][0], 350, 200);
         }
         
+        // создаем доску со всеми фигурами
         createBoard();
     </script>
 </body>
