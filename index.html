@@ -12,30 +12,208 @@
             // создаем доску
             board = document.createElement("div");
             board.id = "board";
-            board.style.background = "green";
-            board.style.width = '600px';
-            board.style.height = "600px"
+            board.style.background = "#BB8B54";
+            board.style.width = "470px";
+            board.style.height = "470px";
             document.body.appendChild(board);
-            // добавляем поля
-            function createField(bgColor, color, figure) {
-                var field = document.createElement("span");
+
+
+             //добавляем контейнер для боковых панелей
+            function createBordersContainer(width, height, borderPosition) {
+                var bordersContainer = document.createElement("div");
+                bordersContainer.id = "bordersContainer" + borderPosition;
+                bordersContainer.style.width = width + "px";
+                bordersContainer.style.height = height + "px";
+                board.appendChild(bordersContainer);
+            }
+
+            // сразу создаем контейнер
+            createBordersContainer(35, 435, "Left");
+            createBordersContainer(400, 35, "Top");
+            createBordersContainer(35, 435, "Right");
+
+
+           //добавляем боковые панели
+             function createBorder(borderPosition, content, width, height, rotation) {
+                var border = document.createElement("span");
+                border.class = "chess-board__border";
+                border.style.width = width + "px";
+                border.style.height = height + "px";
+                border.style.display = "inline-block";
+                border.style.textAlign = "center";
+                border.style.fontSize = "20px";
+                border.style.fontWeight = "700";
+                border.innerHTML = content;
+                border.style.transform = rotation;
+
+                var bordersContainer = document.getElementById("bordersContainer" + borderPosition)
+                bordersContainer.appendChild(border);
+            }
+
+            var lettersArr = ["A", "B", "C", "D", "E", "F", "J", "H"];
+            for(var i = 0; i < 8; i++) {
+                createBorder("Top", lettersArr[i], 50, 35, "rotate(180deg)");
+            }
+
+            //создание боковых границ - цифры
+            for(var i = 8; i >= 1; i--) {
+                createBorder("Left", i, 35, 50);
+            }
+
+            for(var i = 8; i >= 1; i--) {
+                createBorder("Right", i, 35, 50, "rotate(180deg)");
+            }
+
+
+            // создаем контейнер для полей
+
+            function createFieldsContainer() {
+                var fieldsContainer = document.createElement("div");
+                fieldsContainer.id = "fieldsContainer";
+                fieldsContainer.style.width = "400px";
+                fieldsContainer.style.height = "400px";
+                fieldsContainer.style.position = "relative";
+                board.appendChild(fieldsContainer);
+            }
+
+            // сразу вызываем функцию
+            createFieldsContainer();
+
+            // добавляем поля в только что созданный контейнер
+            function createField(color) {
+                var field = document.createElement("div");
                 field.class = "field";
-                field.innerHTML = figure;
-                field.style.background = bgColor;
+                field.style.background = color;
                 field.style.width = "50px";
                 field.style.height = "50px";
-                field.style.display = "inline-block";
-                field.style.color = color;
-                field.style.textAlign = "center";
-                field.style.border = "3px solid gray";
-                board.appendChild(field);
+
+                var fieldsContainer = document.getElementById("fieldsContainer");
+                fieldsContainer.appendChild(field);
+            }
+
+
+            //добавляем нижнюю границу
+            createBordersContainer(470, 35, "Bottom");
+            for(var i = 0; i < 8; i++) {
+                createBorder("Bottom", lettersArr[i], 50, 35);
             }
             
-            var figures = ["&#9812;", "&#9813;", "&#9814;"];
-            createField("white", "black", figures[0]);
-            createField("black", "white", figures[2]);
-            createField("blue", "orange", figures[1]);
+
+
+            // добавляем фигуры
+            function createFigure(figureCode, topPosition, leftPosition) {
+                var figure = document.createElement("span");
+                figure.class = "figure";
+                figure.innerHTML = figureCode;
+                figure.style.width = "50px";
+                figure.style.height = "50px";
+                figure.style.display = "inline-block";
+                figure.style.textAlign = "center";
+                figure.style.fontSize = "32px";
+                figure.style.fontWeight = "700";
+                figure.style.position = "absolute";
+                figure.style.top = topPosition + "px";
+                figure.style.left = leftPosition + "px";
+                figure.style.zIndex = "1";
+                fieldsContainer.appendChild(figure);
+            }
+
             
+
+            for(var i = 0; i < 4; i++) {
+                for(var j = 0; j < 8; j++) {
+                    if(j % 2) {
+                        createField("#592321");
+                    } else {
+                        createField("#FFFDD0");
+                    }
+                }
+               
+                for(var j = 0; j < 8; j++) {
+                    if(j % 2) {
+                        createField("#FFFDD0");
+                    } else {
+                        createField("#592321");
+                    }
+                }
+            }
+            
+            var figures = ["&#9812;", "&#9813;", "&#9814;", "&#9815;", "&#9816;", "&#9817;", "&#9818;", "&#9819;", "&#9820;", "&#9821;", "&#9822;", "&#9823;"];
+
+            //Добавляем черные пешки
+            top = 50;
+            left = -50;
+            for(var i = 1; i <= 8 ; i++) {
+                createFigure(figures[11], top+=0, left+=50);
+            }
+
+            //Добавляем белые пешки
+            top = 300;
+            left = -50;
+            for(var i = 1; i <= 8 ; i++) {
+                createFigure(figures[5], top+=0, left+=50);
+            }
+
+            // расставляем черные ладьи
+            top = 0;
+            left = -350;
+            for(var i = 0; i < 2; i++) {
+                createFigure(figures[8], top+=0, left+=350);
+            }
+
+            // расставляем белые ладьи
+            top = 350;
+            left = -350;
+            for(var i = 0; i < 2; i++) {
+                createFigure(figures[2], top+=0, left+=350);
+            }
+
+
+            //черный конь
+            top = 0;
+            left = -200;
+            for(var i = 0; i < 2; i++) {
+                createFigure(figures[10], top+=0, left+=250);
+            }
+
+
+            //белый конь
+            top = 350;
+            left = -200;
+            for(var i = 0; i < 2; i++) {
+                createFigure(figures[4], top+=0, left+=250);
+            }
+
+
+            //черный слон
+            top = 0;
+            left = -50;
+            for(var i = 0; i < 2; i++) {
+                createFigure(figures[9], top+=0, left+=150);
+            }
+
+
+            //белый слон
+            top = 350;
+            left = -50;
+            for(var i = 0; i < 2; i++) {
+                createFigure(figures[3], top+=0, left+=150);
+            }
+
+
+            // черные предводители
+            var top = 0;
+            var left = 100;
+            for(var i = 7; i >= 6; i--) {
+                createFigure(figures[i], top+=0, left+=50);
+            }
+
+            //белые предводители
+            top = 350;
+            left = 100;
+            for(var i = 1; i >= 0; i--) {
+                createFigure(figures[i], top+=0, left+=50);
+            }
         }
         
         createBoard();
