@@ -1,2 +1,2 @@
 # js1
-Learning JavaScript at GeekBrains. Level 1
+Studying JavaScript at GeekBrains. Level 1
