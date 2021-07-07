@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson4_Homework</title>
+</head>
+<body>
+   <script>
+   //  Задание 1
+    function numberToObject () {
+        var num = prompt("Введите число от 0 до 999");
+        var numObject = {};
+        if (num.length === 3) {
+            numObject['единицы'] = num[2];
+            numObject['десятки'] = num[1];
+            numObject['сотни'] = num[0];
+        } else if (num.length === 2) {
+            numObject['единицы'] = num[1];
+            numObject['десятки'] = num[0];
+            numObject['сотни'] = 0;
+        } else if (num.length === 1) {
+            numObject['единицы'] = num[0];
+            numObject['десятки'] = 0;
+            numObject['сотни'] = 0;
+        } else if (num.length > 3) {
+            console.log('Введенное число превышает 999');     
+        } else {
+            console.log('Вы не ввели число. Введите число от 0 до 999');
+        }
+
+        return numObject;
+    }
+    // Проверка задания 1
+    console.log(numberToObject());
+   </script>
+</body>
+</html>
